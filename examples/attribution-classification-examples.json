@@ -1,0 +1,125 @@
+{
+  "name": "Attribution Classification Examples",
+  "description": "Examples showing how InheritOS separates attribution-first classification from keyword-only classification.",
+  "principle": "Classification authority should belong to attribution structure, not surface keywords.",
+  "cases": [
+    {
+      "case_id": "ace_001_keywords_only_no_material_review",
+      "title": "Domain keywords without structured object",
+      "input": {
+        "message": "This text mentions governance, legal, policy, evidence, security, finance, healthcare, training, audit, and risk.",
+        "lang": "en"
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "reason": "Domain keywords alone should not create Material Review."
+      }
+    },
+    {
+      "case_id": "ace_002_governance_article_topic_projection",
+      "title": "Governance article with topic projection",
+      "input": {
+        "message": "AI governance systems need clear responsibility attribution, auditability, authority boundaries, and lifecycle evidence preservation.",
+        "lang": "en"
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "reason": "General governance discussion may be classified as a topic, but it is not a structured material object."
+      }
+    },
+    {
+      "case_id": "ace_003_explicit_governance_material_object",
+      "title": "Explicit governance material object",
+      "input": {
+        "message": "Review this governance policy material object.",
+        "lang": "en",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "governance_policy_material",
+              "subtype": "policy_review",
+              "confidence": 0.94
+            }
+          ]
+        }
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "reason": "An explicit material object provides the attribution basis for Material Review."
+      }
+    },
+    {
+      "case_id": "ace_004_financial_keywords_no_object",
+      "title": "Financial keywords without material object",
+      "input": {
+        "message": "The article discusses investment risk, financial markets, portfolio exposure, insurance, liquidity, and regulatory compliance.",
+        "lang": "en"
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "reason": "Financial vocabulary alone should not trigger financial Material Review."
+      }
+    },
+    {
+      "case_id": "ace_005_explicit_financial_material_object",
+      "title": "Explicit financial material object",
+      "input": {
+        "message": "This payload contains an explicit financial risk material object.",
+        "lang": "en",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "financial_risk_investment_material",
+              "subtype": "investment_risk_review",
+              "confidence": 0.91
+            }
+          ]
+        }
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "reason": "Material Review is allowed because the structured object is explicit."
+      }
+    },
+    {
+      "case_id": "ace_006_chinese_keywords_no_object",
+      "title": "Chinese domain keywords without object",
+      "input": {
+        "message": "这篇文章提到了治理、法律、金融、医疗、政策、安全、培训、证据和风险，但没有提供结构化材料对象。",
+        "lang": "zh"
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "reason": "Chinese domain keywords alone should not create Material Review."
+      }
+    },
+    {
+      "case_id": "ace_007_chinese_explicit_material_object",
+      "title": "Chinese explicit material object",
+      "input": {
+        "message": "这个输入包含一个明确的治理政策材料对象，需要进行材料审查。",
+        "lang": "zh",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "governance_policy_material",
+              "subtype": "policy_review",
+              "confidence": 0.9
+            }
+          ]
+        }
+      },
+      "expected_boundary": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "reason": "The explicit structured object supports Material Review."
+      }
+    }
+  ]
+}
