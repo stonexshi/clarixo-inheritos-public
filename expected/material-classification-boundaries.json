@@ -1,0 +1,105 @@
+{
+  "name": "Material Classification Boundaries",
+  "description": "Public boundary expectations for InheritOS attribution-first material classification.",
+  "core_principle": "Classification authority should belong to attribution structure, not surface keywords.",
+  "boundaries": {
+    "keywords_are_not_final_authority": {
+      "rule": "Domain keywords alone should not trigger Material Review.",
+      "examples": [
+        "governance",
+        "legal",
+        "policy",
+        "finance",
+        "healthcare",
+        "security",
+        "training",
+        "evidence",
+        "risk",
+        "audit"
+      ],
+      "expected_result": {
+        "topic_projection_allowed": true,
+        "material_review_allowed": false
+      }
+    },
+    "material_review_requires_object": {
+      "rule": "Material Review should require an explicit structured material object or equivalent attribution structure.",
+      "expected_result": {
+        "material_review_allowed": true,
+        "requires_structured_basis": true
+      }
+    },
+    "topic_projection_is_not_material_review": {
+      "rule": "A text may receive topic or subtopic projection without becoming a Material Review case.",
+      "expected_result": {
+        "topic_projection_allowed": true,
+        "material_review_required": false
+      }
+    },
+    "non_object_article_boundary": {
+      "rule": "Ordinary articles, essays, or conceptual explanations should not become Material Review only because they mention domain concepts.",
+      "expected_result": {
+        "article_discussion_allowed": true,
+        "material_review_allowed": false
+      }
+    },
+    "explicit_object_boundary": {
+      "rule": "When a structured material object is explicitly present, Material Review may be generated.",
+      "expected_result": {
+        "material_review_allowed": true,
+        "material_type_should_follow_object": true
+      }
+    },
+    "attribution_layer_owns_classification": {
+      "rule": "The attribution layer should determine classification from responsibility, authority, evidence, execution, inheritance, and material-object structure.",
+      "expected_result": {
+        "classification_source": "attribution_structure",
+        "keyword_only_classification": false
+      }
+    }
+  },
+  "positive_examples": [
+    {
+      "case_id": "mcb_001_explicit_governance_object",
+      "input_summary": "A payload includes a structured governance_policy_material object.",
+      "expected": {
+        "material_review_expected": true,
+        "material_type": "governance_policy_material"
+      }
+    },
+    {
+      "case_id": "mcb_002_explicit_financial_object",
+      "input_summary": "A payload includes a structured financial_risk_investment_material object.",
+      "expected": {
+        "material_review_expected": true,
+        "material_type": "financial_risk_investment_material"
+      }
+    }
+  ],
+  "negative_examples": [
+    {
+      "case_id": "mcb_003_keywords_only",
+      "input_summary": "A text lists governance, legal, finance, healthcare, policy, security, training, evidence, and risk without a structured object.",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": false
+      }
+    },
+    {
+      "case_id": "mcb_004_general_governance_article",
+      "input_summary": "A conceptual article discusses AI governance, responsibility, auditability, and evidence preservation.",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": false
+      }
+    },
+    {
+      "case_id": "mcb_005_chinese_keywords_only",
+      "input_summary": "A Chinese text mentions multiple domain terms but provides no structured material object.",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": false
+      }
+    }
+  ]
+}
