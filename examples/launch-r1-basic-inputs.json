@@ -1,0 +1,79 @@
+{
+  "name": "Launch-R1 Basic Inputs",
+  "description": "Basic public input examples for CLARIXO InheritOS Launch-R1 smoke validation.",
+  "demo_url": "https://tgtracing.com/go/app/public/?p=inheritos",
+  "cases": [
+    {
+      "case_id": "launch_r1_001_basic_continuity",
+      "title": "Basic inherited instability question",
+      "input": {
+        "message": "An AI assistant gives a conclusion based on an earlier assumption. The next agent continues from that conclusion without checking whether the evidence is still valid.",
+        "lang": "en"
+      },
+      "purpose": "Checks whether the system recognizes continuation from an unresolved or unverified prior state."
+    },
+    {
+      "case_id": "launch_r1_002_responsibility_boundary",
+      "title": "Responsibility boundary problem",
+      "input": {
+        "message": "A reviewer approves a workflow, but another system later changes the execution scope. The final decision continues as if the original approval still applies.",
+        "lang": "en"
+      },
+      "purpose": "Checks whether authority and responsibility continuity are treated as part of inheritance safety."
+    },
+    {
+      "case_id": "launch_r1_003_evidence_conflict",
+      "title": "Evidence conflict before continuation",
+      "input": {
+        "message": "The first report says the claim is supported, but a later record contradicts the evidence. The process continues without resolving the conflict.",
+        "lang": "en"
+      },
+      "purpose": "Checks whether contradicted evidence creates an unstable continuation boundary."
+    },
+    {
+      "case_id": "launch_r1_004_non_object_governance_article",
+      "title": "Non-object governance article",
+      "input": {
+        "message": "AI governance requires responsibility, evidence, policy, risk management, and auditability. A strong governance system should preserve accountability across the full lifecycle.",
+        "lang": "en"
+      },
+      "purpose": "Checks that general governance discussion can receive topic projection without triggering Material Review."
+    },
+    {
+      "case_id": "launch_r1_005_explicit_material_object",
+      "title": "Explicit material object",
+      "input": {
+        "message": "This payload contains an explicit governance policy material object for review.",
+        "lang": "en",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "governance_policy_material",
+              "subtype": "policy_review",
+              "confidence": 0.92
+            }
+          ]
+        }
+      },
+      "purpose": "Checks that explicit material objects can trigger Material Review."
+    },
+    {
+      "case_id": "launch_r1_006_chinese_continuity",
+      "title": "Chinese inherited instability input",
+      "input": {
+        "message": "一个系统继承了之前的结论，但没有重新检查证据是否仍然有效，也没有重新绑定责任边界。",
+        "lang": "zh"
+      },
+      "purpose": "Checks Chinese-language continuity and inheritance detection."
+    },
+    {
+      "case_id": "launch_r1_007_keyword_not_authority",
+      "title": "Keywords alone should not own classification",
+      "input": {
+        "message": "This article mentions legal, finance, healthcare, policy, security, training, evidence, governance, and risk, but it does not provide a structured material object.",
+        "lang": "en"
+      },
+      "purpose": "Checks that domain keywords alone do not create Material Review."
+    }
+  ]
+}
