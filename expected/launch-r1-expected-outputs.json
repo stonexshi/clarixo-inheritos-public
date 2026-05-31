@@ -1,0 +1,79 @@
+{
+  "name": "Launch-R1 Expected Outputs",
+  "description": "Expected public output boundaries for CLARIXO InheritOS Launch-R1 smoke validation.",
+  "demo_url": "https://tgtracing.com/go/app/public/?p=inheritos",
+  "status": {
+    "launch_r1_public_access_smoke": "closed",
+    "pass_count": 7,
+    "fail_count": 0
+  },
+  "expected_cases": [
+    {
+      "case_id": "launch_r1_001_basic_continuity",
+      "expected": {
+        "continuity_issue_expected": true,
+        "inherited_instability_expected": true,
+        "material_review_expected": false,
+        "reason": "The input describes continuation from an earlier assumption without rechecking evidence."
+      }
+    },
+    {
+      "case_id": "launch_r1_002_responsibility_boundary",
+      "expected": {
+        "continuity_issue_expected": true,
+        "responsibility_boundary_expected": true,
+        "material_review_expected": false,
+        "reason": "The input describes a changed execution scope continuing under old approval."
+      }
+    },
+    {
+      "case_id": "launch_r1_003_evidence_conflict",
+      "expected": {
+        "continuity_issue_expected": true,
+        "evidence_conflict_expected": true,
+        "material_review_expected": false,
+        "reason": "The input describes contradicted evidence that is not resolved before continuation."
+      }
+    },
+    {
+      "case_id": "launch_r1_004_non_object_governance_article",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": false,
+        "reason": "A general governance article may receive topic projection, but should not trigger Material Review without a structured material object."
+      }
+    },
+    {
+      "case_id": "launch_r1_005_explicit_material_object",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": true,
+        "material_type_expected": "governance_policy_material",
+        "reason": "The payload contains an explicit structured material object."
+      }
+    },
+    {
+      "case_id": "launch_r1_006_chinese_continuity",
+      "expected": {
+        "continuity_issue_expected": true,
+        "inherited_instability_expected": true,
+        "material_review_expected": false,
+        "reason": "The Chinese input describes inheriting a prior conclusion without evidence revalidation or responsibility rebinding."
+      }
+    },
+    {
+      "case_id": "launch_r1_007_keyword_not_authority",
+      "expected": {
+        "topic_projection_expected": true,
+        "material_review_expected": false,
+        "reason": "Domain keywords alone should not own final classification authority."
+      }
+    }
+  ],
+  "public_contract": {
+    "keywords_alone_do_not_trigger_material_review": true,
+    "material_review_requires_structured_object": true,
+    "topic_projection_can_exist_without_material_review": true,
+    "attribution_structure_has_classification_authority": true
+  }
+}
