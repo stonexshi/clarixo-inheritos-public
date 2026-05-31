@@ -1,0 +1,150 @@
+{
+  "name": "ACE Boundary Examples",
+  "description": "Examples for CLARIXO ACE showing the boundary between keyword-based topic projection and attribution-based material classification.",
+  "principle": "Classification authority should belong to attribution structure, not keywords.",
+  "cases": [
+    {
+      "case_id": "ace_boundary_001_keywords_only",
+      "title": "Keywords only",
+      "input": {
+        "message": "This article mentions governance, legal, finance, healthcare, policy, security, training, evidence, audit, and risk.",
+        "lang": "en"
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "classification_authority": "insufficient",
+        "reason": "Domain keywords alone may support topic projection but should not trigger Material Review."
+      }
+    },
+    {
+      "case_id": "ace_boundary_002_governance_article",
+      "title": "General governance article",
+      "input": {
+        "message": "AI governance systems should preserve responsibility attribution, evidence continuity, auditability, and lifecycle accountability.",
+        "lang": "en"
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "classification_authority": "topic_projection_only",
+        "reason": "A conceptual governance article can be understood as governance-related without becoming a structured material review case."
+      }
+    },
+    {
+      "case_id": "ace_boundary_003_explicit_governance_object",
+      "title": "Explicit governance material object",
+      "input": {
+        "message": "This payload contains an explicit governance policy material object for review.",
+        "lang": "en",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "governance_policy_material",
+              "subtype": "policy_review",
+              "confidence": 0.92
+            }
+          ]
+        }
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "classification_authority": "structured_attribution_object",
+        "material_type_expected": "governance_policy_material",
+        "reason": "The structured material object provides attribution support for Material Review."
+      }
+    },
+    {
+      "case_id": "ace_boundary_004_finance_keywords_only",
+      "title": "Financial vocabulary without object",
+      "input": {
+        "message": "This text discusses investment risk, liquidity, portfolio exposure, regulatory reporting, insurance, and market volatility.",
+        "lang": "en"
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "classification_authority": "topic_projection_only",
+        "reason": "Financial vocabulary alone should not trigger financial Material Review."
+      }
+    },
+    {
+      "case_id": "ace_boundary_005_explicit_financial_object",
+      "title": "Explicit financial material object",
+      "input": {
+        "message": "This payload contains a financial risk investment material object.",
+        "lang": "en",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "financial_risk_investment_material",
+              "subtype": "investment_risk_review",
+              "confidence": 0.91
+            }
+          ]
+        }
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "classification_authority": "structured_attribution_object",
+        "material_type_expected": "financial_risk_investment_material",
+        "reason": "The explicit material object supports financial material classification."
+      }
+    },
+    {
+      "case_id": "ace_boundary_006_runtime_continuity_not_material",
+      "title": "Runtime continuity issue without material object",
+      "input": {
+        "message": "The second agent continues from the first agent's conclusion even though the evidence changed and responsibility was not rebound.",
+        "lang": "en"
+      },
+      "expected": {
+        "continuity_issue_expected": true,
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "classification_authority": "continuity_attribution",
+        "reason": "The input describes inherited instability and responsibility rebinding risk, but does not provide a material object."
+      }
+    },
+    {
+      "case_id": "ace_boundary_007_chinese_keywords_only",
+      "title": "Chinese keywords without object",
+      "input": {
+        "message": "这篇文章提到了治理、法律、金融、医疗、政策、安全、培训、证据、审计和风险，但没有结构化材料对象。",
+        "lang": "zh"
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": false,
+        "classification_authority": "topic_projection_only",
+        "reason": "Chinese domain keywords alone should not trigger Material Review."
+      }
+    },
+    {
+      "case_id": "ace_boundary_008_chinese_explicit_object",
+      "title": "Chinese explicit governance object",
+      "input": {
+        "message": "这个输入包含一个明确的治理政策材料对象，需要进行材料审查。",
+        "lang": "zh",
+        "material_attribution": {
+          "objects": [
+            {
+              "material_type": "governance_policy_material",
+              "subtype": "policy_review",
+              "confidence": 0.9
+            }
+          ]
+        }
+      },
+      "expected": {
+        "topic_projection_allowed": true,
+        "material_review_expected": true,
+        "classification_authority": "structured_attribution_object",
+        "material_type_expected": "governance_policy_material",
+        "reason": "The explicit structured object supports Material Review."
+      }
+    }
+  ]
+}
