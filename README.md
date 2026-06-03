@@ -58,6 +58,21 @@ It should become a separate repository only after it has an independent schema, 
 
 ---
 
+## Dual-sided protocol protection
+
+InheritOS has also opened a runtime governance direction called:
+
+CLARIXO Dual-Sided Protocol Protection
+
+This direction protects two sides of continuation:
+
+1. before inheritance: state recognition and inherited-context detection;
+2. before output: output-boundary review and governance evidence attachment.
+
+The first shadow-only runtime validation has been documented in:
+
+theory/05-dual-sided-protocol-protection.md
+
 ## Core idea
 
 Modern AI systems often fail not because a single output is wrong, but because an unstable state is allowed to continue.
